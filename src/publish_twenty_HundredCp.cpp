@@ -4,9 +4,9 @@
 int main(int argc, char** argv)
 {
     ros::init(argc, argv, "publisher_node_twentyHundred");
-    ros::NodeHandle n;
-    ros::Publisher pub = n.advertise<std_msgs::Int8>("TwentyHundred_topic", 10);
-    ros::Rate rate(2);
+    ros::NodeHandle n;      // call the Node handle 
+    ros::Publisher pub = n.advertise<std_msgs::Int8>("TwentyHundred_topic", 10); // create a ROS publisher
+    ros::Rate rate(2);  // how often we create our message - 2 in a second
     std_msgs::Int8 counter;
     counter.data = 20;
 

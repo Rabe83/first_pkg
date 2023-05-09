@@ -10,9 +10,11 @@ project(first_pkg)
 find_package(catkin REQUIRED COMPONENTS
   roscpp
   rospy
-  std_msgs
+  std_msgs 
+  genmsg 
 )
 
+include_directories(${catkin_INCLUDE_DIRS})
 ## System dependencies are found with CMake's conventions
 # find_package(Boost REQUIRED COMPONENTS system)
 
@@ -68,10 +70,10 @@ find_package(catkin REQUIRED COMPONENTS
 # )
 
 ## Generate added messages and services with any dependencies listed here
-# generate_messages(
-#   DEPENDENCIES
-#   std_msgs
-# )
+ generate_messages(
+   DEPENDENCIES
+   std_msgs
+ )
 
 ################################################
 ## Declare ROS dynamic reconfigure parameters ##
@@ -134,8 +136,9 @@ include_directories(
 ## With catkin_make all packages are built within a single CMake context
 ## The recommended prefix ensures that target names across packages don't collide
 # add_executable(${PROJECT_NAME}_node src/first_pkg_node.cpp)
-add_executable(publisher_node_turtle_forwardcp src/publisher_turtle_forwardcp.cpp)
-target_link_libraries(publisher_node_turtle_forwardcp ${catkin_LIBRARIES})
+ add_executable(publisher_turtle_forwardcp src/publisher_turtle_forwardcp.cpp)
+ add_executable(publish_twenty_HundredCp src/publish_twenty_HundredCp.cpp)
+## target_link_libraries(publisher_node_turtle_forwardcp ${catkin_LIBRARIES})
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
 ## target back to the shorter version for ease of user use
@@ -144,13 +147,16 @@ target_link_libraries(publisher_node_turtle_forwardcp ${catkin_LIBRARIES})
 
 ## Add cmake target dependencies of the executable
 ## same as for the library above
-# add_dependencies(${PROJECT_NAME}_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
-
+ add_dependencies(publisher_turtle_forwardcp ${publisher_turtle_forwardcp_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+ add_dependencies(publish_twenty_HundredCp ${publish_twenty_HundredCp_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+ 
 ## Specify libraries to link a library or executable target against
-# target_link_libraries(${PROJECT_NAME}_node
-#   ${catkin_LIBRARIES}
-# )
-
+ target_link_libraries(publisher_turtle_forwardcp
+  ${catkin_LIBRARIES}
+ )
+ target_link_libraries(publish_twenty_HundredCp
+  ${catkin_LIBRARIES}
+ )
 #############
 ## Install ##
 #############
