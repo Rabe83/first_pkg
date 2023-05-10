@@ -1,0 +1,6 @@
+<launch>
+  <!-- first_pkg launch file -->
+  <node pkg="first_pkg" type="publish_twenty_HundredCp" name="publisher_node_twentyHundredINCpp" output="screen">
+    
+  </node>
+</launch>
